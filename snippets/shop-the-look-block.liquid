@@ -1,0 +1,225 @@
+{% assign product_metafield = product.metafields.custom.stg_shop_the_look_ %}
+
+{% if product_metafield and product_metafield.value.size != 0 %}
+ <h5 class="shop-the-look-block-title">SHOP THIS LOOK</h5>
+  <div class="shop-the-look-container">
+    {% for related_product in product_metafield.value %}
+      {% assign product_data = all_products[related_product.handle] %}
+
+      {% if product_data %}
+        <div class="shop-the-look-card" data-product-id="{{ product_data.id }}">
+          <a href="{{ product_data.url }}">
+            <img src="{{ product_data.featured_image | img_url: '300x300' }}" 
+                 alt="{{ product_data.title }}" class="shop-the-look-image">
+          </a>
+          <h3 class="shop-the-look-title">{{ product_data.title }}</h3>
+          <p class="shop-the-look-price">{{ product_data.price | money_without_trailing_zeros }}</p>
+
+          {% assign first_variant = product_data.variants.first %}
+          {% if first_variant.available %}
+            <button class="btn--large btn shop-the-look-add-to-cart" data-variant-id="{{ first_variant.id }}" data-price="{{ product_data.variants.first.price }}">
+              Add to Cart
+            </button>
+          {% else %}
+            <button class="btn--large btn shop-the-look-out-of-stock" disabled>SOLD OUT</button>
+          {% endif %}
+        </div>
+      {% endif %}
+
+    {% endfor %}
+    <button id="add-all-to-cart" class="shop-the-look-add-all">Add All to Cart</button>
+
+  </div>
+{% endif %}
+
+<style>
+  .shop-the-look-block-title {
+    border:1px solid #513d32;
+    border-bottom-width:0;
+    width: fit-content;
+    color:#513d32;
+    text-transform:uppercase;
+    padding: 8px 15px 8px 15px;
+    margin-bottom: 0px;
+    margin-top:15px;
+    font-size: 15px;
+    font-family: Cardo;
+    background: #faebd796;
+    font-weight:600;
+  }
+  .disclosure {
+    margin-bottom: 35px;
+  }
+  .shop-the-look-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4%;
+    /* background: #513d3226; */
+    border: 1px solid #513d32;
+    padding: 20px 20px 10px 20px;
+  }
+  .shop-the-look-card {
+    width: 30.65%;
+    /*box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    background: #fff;  
+    padding-bottom: 10px;*/
+    text-align: center;
+    border-radius: 8px;
+    position:relative;
+  }
+  .shop-the-look-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  .shop-the-look-title {
+    font-size: 14px;
+    margin: 5px 0;
+    font-family: Cardo;
+  }
+  .shop-the-look-price {
+    font-weight: bold;
+    font-size: 12px;
+    color: #333;
+    margin-bottom:5px;
+  }
+  .shop-the-look-add-to-cart, .shop-the-look-out-of-stock {
+    font-size: 10px;
+    color: #000;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    border: 1px solid #513d32;
+    position: absolute;
+    bottom: 22%;
+    left: 0;
+    background-color: #faebd7bf;
+  }
+  .shop-the-look-add-all  {
+    border:1px solid #513d32;
+    width: 100%;
+    color:#513d32;
+    text-transform:uppercase;
+    padding: 8px 15px 12px 15px;
+    margin-bottom: 8px;
+    margin-top:15px;
+    font-size: 15px;
+    font-family: Cardo;
+    background: #faebd796;
+  }
+   .shop-the-look-add-all:hover {
+    background:#513d32;
+    color:#fff;
+  }
+  .shop-the-look-add-to-cart:hover  {
+    background:#ffffff;
+    border:1px solid #513d32;
+    color:#513d32;
+  }
+  .shop-the-look-out-of-stock {
+    background: #aaa;
+    color: #fff;
+    cursor: not-allowed;
+  }
+</style>
+  
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+  const addAllButton = document.querySelector("#add-all-to-cart");
+
+  if (addAllButton) {
+    updateTotalPrice(); // Call on page load
+
+    addAllButton.addEventListener("click", function () {
+      let allVariants = [];
+
+      document.querySelectorAll(".shop-the-look-add-to-cart").forEach(button => {
+        let variantId = button.getAttribute("data-variant-id");
+        if (variantId) {
+          allVariants.push({ id: parseInt(variantId), quantity: 1 });
+        }
+      });
+
+      if (allVariants.length > 0) {
+        addToCart(allVariants);
+      } else {
+        alert("No products available to add.");
+      }
+    });
+  }
+
+  // ✅ Handle Single Product Add to Cart
+  document.querySelectorAll(".shop-the-look-add-to-cart").forEach(button => {
+    button.addEventListener("click", function () {
+      let variantId = this.getAttribute("data-variant-id");
+      if (variantId) {
+        addToCart([{ id: parseInt(variantId), quantity: 1 }]);
+      }
+    });
+  });
+
+  function addToCart(items) {
+    fetch(window.Shopify.routes.root + 'cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ items: items })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.status && data.status !== 200) {
+        document.dispatchEvent(new CustomEvent("on:cart:error", { detail: { error: data.description || "An error occurred" }}));
+        alert("Error: " + (data.description || "Could not add product"));
+      } else {
+        document.dispatchEvent(new CustomEvent("on:cart:add"));
+
+        // Refresh and open cart drawer
+        document.dispatchEvent(new CustomEvent("dispatch:cart-drawer:refresh", { bubbles: true }));
+        document.dispatchEvent(new CustomEvent("dispatch:cart-drawer:open"));
+
+        // Update cart icon count
+        updateCartItemCount();
+      }
+    })
+    .catch(error => {
+      console.error("Cart error:", error);
+      alert("Something went wrong. Please try again.");
+    });
+  }
+
+  function updateCartItemCount() {
+    fetch(window.Shopify.routes.root + "cart.js")
+      .then(response => response.json())
+      .then(cart => {
+        let cartCount = cart.item_count;
+        let cartBadge = document.querySelector(".cart-link__count");
+
+        if (cartBadge) {
+          cartBadge.textContent = cartCount;
+          cartBadge.style.display = cartCount > 0 ? "inline-block" : "none";
+        }
+      })
+      .catch(error => console.error("Error updating cart count:", error));
+  }
+
+  function updateTotalPrice() {
+    let totalPrice = 0;
+
+    document.querySelectorAll(".shop-the-look-add-to-cart").forEach(button => {
+      let price = parseFloat(button.getAttribute("data-price")) / 100; // Convert cents to dollars
+      totalPrice += price;
+    });
+
+    if (addAllButton) {
+      addAllButton.textContent = `Add All to Cart – $${totalPrice.toFixed(0)}`;
+    }
+  }
+
+  // Update total price if variants change
+  document.addEventListener("on:variant:change", updateTotalPrice);
+});
+</script>
+
