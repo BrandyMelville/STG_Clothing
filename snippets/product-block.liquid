@@ -71,6 +71,13 @@ Parameters:
 -%}
 
 <product-block class="product-block{% if compact %} product-block--compact{% endif %}{% if card_layout == 'landscape' %} product-block--landscape{% endif %}" data-product-id="{{ product.id }}">
+        
+          {% if product.metafields.custom.enable_shop_the_look %}
+            <div class="shop-the-look-button-collection">
+              <a href="{{ product_url }}#shop-the-look"> SHOP THIS LOOK </a>
+            </div>
+          {% endif %}
+  
   <div class="block-inner"{% if animate %}{%- render 'animation-attrs', attrs: 'data-cc-animate', always: true -%}{% endif %}>
     <div class="block-inner-inner">
       {% if product.featured_media %}
@@ -163,6 +170,7 @@ Parameters:
       {% endif %}
 
       <div class="product-block__detail align-ltr-{{ settings.prod_thumb_text_align }}">
+              
         <div class="inner">
           <div class="innerer">
             <a class="product-link{% if settings.quickbuy_style == 'whole' %}{% unless no_quick_buy %} quickbuy-toggle{% endunless %}{% endif %}" href="{{ product_url }}">

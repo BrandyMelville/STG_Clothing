@@ -8764,6 +8764,7 @@ carousel-slider[inactive] .slider-nav__btn {
   display: block;
   text-align: center;
   transition: padding-bottom 0.7s ease;
+  position:relative;
 }
 .product-block .block-inner .vendor {
   margin: 1em 0 0.4em;
@@ -10920,5 +10921,24 @@ textarea {
   }
   .md\:flex-row-reverse{
     flex-direction: row-reverse;
+  }
+}
+
+
+
+/* CUSTOM CSS */
+  .shop-the-look-button-collection {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 5px 8px;
+    border: 1px solid #8a5731;
+    font-size: 9px;
+    z-index: 1;
+    background: #ffffff80;
+  }
+@media (min-width: 450px) {
+  .shop-the-look-button-collection {
+    font-size: 12px;
   }
 }

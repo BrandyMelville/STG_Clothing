@@ -1,3 +1,7 @@
+{% if product.metafields.custom.stg_shop_the_look_ != blank %}
+  {%- assign shop_the_look_active = true -%}
+{% endif %}
+
 {%- liquid
   assign zoom_size = 5000
   assign min_aspect_ratio = 0.6

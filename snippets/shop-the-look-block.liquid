@@ -1,16 +1,18 @@
 {% assign product_metafield = product.metafields.custom.stg_shop_the_look_ %}
 
 {% if product_metafield and product_metafield.value.size != 0 %}
+  <a name="shop-the-look" style="scroll-margin-top: 150px;">
  <h5 class="shop-the-look-block-title">SHOP THIS LOOK</h5>
   <div class="shop-the-look-container">
     {% for related_product in product_metafield.value %}
       {% assign product_data = all_products[related_product.handle] %}
+      {% assign product_last_image = product_data.images.last %}
 
       {% if product_data %}
         <div class="shop-the-look-card" data-product-id="{{ product_data.id }}">
           <a href="{{ product_data.url }}">
-            <img src="{{ product_data.featured_image | img_url: '300x300' }}" 
-                 alt="{{ product_data.title }}" class="shop-the-look-image">
+            <img src="{{ product_last_image | img_url: '300x300' }}" 
+                 alt="{{ product_data.title }}" class="shop-the-look-image" width="100%">
           </a>
           <h3 class="shop-the-look-title">{{ product_data.title }}</h3>
           <p class="shop-the-look-price">{{ product_data.price | money_without_trailing_zeros }}</p>
@@ -98,6 +100,13 @@
     left: 0;
     background-color: #faebd7bf;
   }
+  @media (max-width: 450px) {
+   .shop-the-look-add-to-cart, .shop-the-look-out-of-stock {
+    font-size: 8px;
+     bottom: 28%;
+   }
+  }
+ 
   .shop-the-look-add-all  {
     border:1px solid #513d32;
     width: 100%;
