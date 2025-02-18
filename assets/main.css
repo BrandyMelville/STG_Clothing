@@ -10928,17 +10928,35 @@ textarea {
 
 /* CUSTOM CSS */
   .shop-the-look-button-collection {
+    width: 94%;
     position: absolute;
-    top: 5px;
-    right: 5px;
-    padding: 5px 8px;
-    border: 1px solid #8a5731;
+    bottom: 1.5%;
+    right: 3%;
+    left: 3%;
+    padding: 10px 8px;
+    border: 0;
     font-size: 9px;
     z-index: 1;
-    background: #ffffff80;
+    background: #4a3424db;
+    color: #fff;
+    opacity: 0;
+  }
+  .image-cont:hover .shop-the-look-button-collection {
+    opacity: 1;
+  }
+
+  .shop-the-look-button-collection a {
+   color: #fff; 
   }
 @media (min-width: 450px) {
   .shop-the-look-button-collection {
     font-size: 12px;
+  }
+}
+@media (max-width: 440px) {
+.shop-the-look-button-collection {
+  background: #4a3424c7;
+  opacity: 1;
+  padding: 5px 8px;
   }
 }
