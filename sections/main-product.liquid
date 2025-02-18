@@ -115,6 +115,11 @@
               </button>
             </div>
           {%- endif -%}
+          {% if product.metafields.custom.enable_shop_the_look %}
+            <div class="shop-the-look-button-product-mobile">
+              <a href="{{ product_url }}#shop-the-look"> SHOP THIS LOOK </a>
+            </div>
+          {% endif %}
         </carousel-slider>
 
         {%- if section.settings.gallery_layout contains 'collage' or section.settings.gallery_layout contains 'columns' -%}

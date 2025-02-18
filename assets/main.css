@@ -10955,8 +10955,33 @@ textarea {
 }
 @media (max-width: 440px) {
 .shop-the-look-button-collection {
-  background: #4a3424c7;
-  opacity: 1;
-  padding: 5px 8px;
+  background: #faebd7bf;
+  opacity: 0;
+  padding: 2px 2px;
+  width: 40%;
+  left: 30%;
+  right: 30%;
+  font-size: 7px;
+  font-weight: bold;
   }
+  .shop-the-look-button-product-mobile {
+    background: #4a3424d9;
+    opacity: 1;
+    padding: 11px 6px;
+    width: 94%;
+    left: 3%;
+    right: 3%;
+    font-size: 12px;
+    position: absolute;
+    bottom: 1.5%;
+  }
+  .shop-the-look-button-product-mobile a {
+  color:#fff;
+  }
+  .image-cont:hover .shop-the-look-button-collection {
+    opacity: 0;
+  }
+  .shop-the-look-button-collection a {
+    color: #4a3424; 
+   }
 }
