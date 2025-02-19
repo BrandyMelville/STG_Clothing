@@ -21,12 +21,22 @@
       }
     },
     {
+      "key": "stg_shop_the_look_",
+      "namespace": "custom",
+      "name": "STG Shop The Look ",
+      "description": "",
+      "type": {
+        "name": "list.product_reference",
+        "category": "REFERENCE"
+      } 
+    },
+    {
       "key": "stg_shop_the_look_v",
       "namespace": "custom",
       "name": "STG Shop The Look (variants)",
       "description": "",
       "type": {
-        "name": "list.product_reference",
+        "name": "list.variant_reference",
         "category": "REFERENCE"
       } 
     },

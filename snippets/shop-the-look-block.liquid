@@ -5,15 +5,16 @@
     <h5 class="shop-the-look-block-title">SHOP THIS LOOK</h5>
     <div class="shop-the-look-container">
       {% for related_variant in variant_metafield.value %}
-        {% assign variant_data = all_products[related_variant.product_handle].variants | where: "id", related_variant.id | first %}
-        {% assign variant_image = variant_data.image | default: variant_data.product.images.last %}
+        {% assign product_data = all_products[related_variant.product_handle] %}
+        {% assign variant_data = product_data.variants | where: "id", related_variant.id | first %}
+        {% assign variant_image = variant_data.image | default: product_data.images.last %}
 
-        {% if variant_data %}
+        {% if product_data and variant_data %}
           <div class="shop-the-look-card" data-variant-id="{{ variant_data.id }}">
             <div class="shop-the-look-card-image">
-              <a href="{{ variant_data.product.url }}">
+              <a href="{{ product_data.url }}">
                 <img src="{{ variant_image | img_url: '300x300' }}" 
-                     alt="{{ variant_data.product.title }}" class="shop-the-look-image" width="100%">
+                     alt="{{ product_data.title }} - {{ variant_data.title }}" class="shop-the-look-image" width="100%">
               </a>
               {% if variant_data.available %}
                 <button class="btn--large btn shop-the-look-add-to-cart" data-variant-id="{{ variant_data.id }}" data-price="{{ variant_data.price }}">
@@ -24,7 +25,7 @@
               {% endif %}
             </div>
             <div class="shop-the-look-card-info">
-              <h3 class="shop-the-look-title">{{ variant_data.product.title }} - {{ variant_data.title }}</h3>
+              <h3 class="shop-the-look-title">{{ product_data.title }} - {{ variant_data.title }}</h3>
               <p class="shop-the-look-price">{{ variant_data.price | money_without_trailing_zeros }}</p>
             </div>
           </div>
@@ -34,6 +35,7 @@
     </div>
   </a>
 {% endif %}
+
 
 <style>
   .shop-the-look-block-title {
