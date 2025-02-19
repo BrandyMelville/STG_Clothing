@@ -6,10 +6,29 @@
     <div class="shop-the-look-container">
       {% for variant_data in variant_metafield.value %}
         {% assign product_data = variant_data.product %}
-        {% assign variant_images = variant_data.images %}
-        {% assign variant_image = variant_images.last | default: product_data.images.last %}
+        {% assign variant_id = variant_data.id %}
+        {% assign variant_color = variant_data.option1 %}  
+        {% assign variant_image = nil %}
 
-        {% if product_data and variant_data %}
+        {%- comment -%}
+          Loop through the product images and find the ones related to this variant color.
+        {%- endcomment -%}
+        {% assign product_images = product_data.images %}
+
+        {%- comment -%}
+          Check if the product has multiple variants or only one variant.
+          If there's only one variant, use the first image.
+        {%- endcomment -%}
+        {% if product_data.variants.size  == 1 or product_data.variants.size  == 2 %}
+          {% assign variant_image = product_images.last %}
+        {% else %}
+          {% assign matching_images = product_images | where: "alt", variant_color %}
+          {% if matching_images.size > 0 %}
+            {% assign variant_image = matching_images | last %}
+          {% endif %}
+        {% endif %}
+
+        {% if variant_image %}
           <div class="shop-the-look-card" data-variant-id="{{ variant_data.id }}">
             <div class="shop-the-look-card-image">
               <a href="{{ product_data.url }}?variant={{ variant_data.id }}">
@@ -25,7 +44,7 @@
               {% endif %}
             </div>
             <div class="shop-the-look-card-info">
-              <h3 class="shop-the-look-title">{{ product_data.title }} {% comment %} - {{ variant_data.title }} {% endcomment  %}</h3>
+              <h3 class="shop-the-look-title">{{ product_data.title }} - {{ variant_data.title }}</h3>
               <p class="shop-the-look-price">{{ variant_data.price | money_without_trailing_zeros }}</p>
             </div>
           </div>
@@ -35,6 +54,10 @@
     </div>
   </a>
 {% endif %}
+
+
+
+
 
 
 
