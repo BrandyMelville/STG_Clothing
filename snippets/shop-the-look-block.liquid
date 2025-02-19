@@ -4,9 +4,8 @@
   <a name="shop-the-look" style="scroll-margin-top: 150px;">
     <h5 class="shop-the-look-block-title">SHOP THIS LOOK</h5>
     <div class="shop-the-look-container">
-      {% for related_variant in variant_metafield.value %}
-        {% assign product_data = all_products[related_variant.product_handle] %}
-        {% assign variant_data = product_data.variants | where: "id", related_variant.id | first %}
+      {% for variant_data in variant_metafield.value %}
+        {% assign product_data = variant_data.product %}
         {% assign variant_image = variant_data.image | default: product_data.images.last %}
 
         {% if product_data and variant_data %}
@@ -35,6 +34,7 @@
     </div>
   </a>
 {% endif %}
+
 
 
 <style>
@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.querySelectorAll(".shop-the-look-add-to-cart").forEach(button => {
         let variantId = button.getAttribute("data-variant-id");
         if (variantId) {
-          allVariants.push({ id: parseInt(variantId), quantity: 1 });
+          allVariants.push({ id: parseInt(variantId, 10), quantity: 1 });
         }
       });
 
@@ -169,12 +169,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // ✅ Handle Single Product Add to Cart
+  // ✅ Handle Single Variant Add to Cart
   document.querySelectorAll(".shop-the-look-add-to-cart").forEach(button => {
     button.addEventListener("click", function () {
       let variantId = this.getAttribute("data-variant-id");
       if (variantId) {
-        addToCart([{ id: parseInt(variantId), quantity: 1 }]);
+        addToCart([{ id: parseInt(variantId, 10), quantity: 1 }]);
       }
     });
   });
@@ -231,12 +231,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     if (addAllButton) {
-      addAllButton.textContent = `Add All to Cart – $${totalPrice.toFixed(0)}`;
+      addAllButton.textContent = `Add All to Cart – $${totalPrice.toFixed(2)}`;
     }
   }
 
   // Update total price if variants change
   document.addEventListener("on:variant:change", updateTotalPrice);
 });
+
 </script>
 

@@ -31,16 +31,6 @@
       } 
     },
     {
-      "key": "stg_shop_the_look_v",
-      "namespace": "custom",
-      "name": "STG Shop The Look (variants)",
-      "description": "",
-      "type": {
-        "name": "list.variant_reference",
-        "category": "REFERENCE"
-      } 
-    },
-    {
       "key": "enable_shop_the_look",
       "namespace": "custom",
       "name": "Enable Shop the look",
