@@ -44,7 +44,7 @@
               {% endif %}
             </div>
             <div class="shop-the-look-card-info">
-              <h3 class="shop-the-look-title">{{ product_data.title }} - {{ variant_data.title }}</h3>
+              <h3 class="shop-the-look-title">{{ product_data.title }} {% comment %}- {{ variant_data.title }} {% endcomment %}</h3>
               <p class="shop-the-look-price">{{ variant_data.price | money_without_trailing_zeros }}</p>
             </div>
           </div>
