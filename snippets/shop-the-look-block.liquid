@@ -1,41 +1,38 @@
-{% assign product_metafield = product.metafields.custom.stg_shop_the_look_v %}
+{% assign variant_metafield = product.metafields.custom.stg_shop_the_look_v %}
 
-{% if product_metafield and product_metafield.value.size != 0 %}
+{% if variant_metafield and variant_metafield.value.size != 0 %}
   <a name="shop-the-look" style="scroll-margin-top: 150px;">
- <h5 class="shop-the-look-block-title">SHOP THIS LOOK</h5>
-  <div class="shop-the-look-container">
-    {% for related_product in product_metafield.value %}
-      {% assign product_data = all_products[related_product.handle] %}
-      {% assign product_last_image = product_data.images.last %}
+    <h5 class="shop-the-look-block-title">SHOP THIS LOOK</h5>
+    <div class="shop-the-look-container">
+      {% for related_variant in variant_metafield.value %}
+        {% assign variant_data = all_products[related_variant.product_handle].variants | where: "id", related_variant.id | first %}
+        {% assign variant_image = variant_data.image | default: variant_data.product.images.last %}
 
-      {% if product_data %}
-        <div class="shop-the-look-card" data-product-id="{{ product_data.id }}">
-          <div class="shop-the-look-card-image">
-          <a href="{{ product_data.url }}">
-            <img src="{{ product_last_image | img_url: '300x300' }}" 
-                 alt="{{ product_data.title }}" class="shop-the-look-image" width="100%">
-          </a>
-          {% assign first_variant = product_data.variants.first %}
-          {% if first_variant.available %}
-            <button class="btn--large btn shop-the-look-add-to-cart" data-variant-id="{{ first_variant.id }}" data-price="{{ product_data.variants.first.price }}">
-              Add to Cart
-            </button>
-          {% else %}
-            <button class="btn--large btn shop-the-look-out-of-stock" disabled>SOLD OUT</button>
-          {% endif %}
+        {% if variant_data %}
+          <div class="shop-the-look-card" data-variant-id="{{ variant_data.id }}">
+            <div class="shop-the-look-card-image">
+              <a href="{{ variant_data.product.url }}">
+                <img src="{{ variant_image | img_url: '300x300' }}" 
+                     alt="{{ variant_data.product.title }}" class="shop-the-look-image" width="100%">
+              </a>
+              {% if variant_data.available %}
+                <button class="btn--large btn shop-the-look-add-to-cart" data-variant-id="{{ variant_data.id }}" data-price="{{ variant_data.price }}">
+                  Add to Cart
+                </button>
+              {% else %}
+                <button class="btn--large btn shop-the-look-out-of-stock" disabled>SOLD OUT</button>
+              {% endif %}
+            </div>
+            <div class="shop-the-look-card-info">
+              <h3 class="shop-the-look-title">{{ variant_data.product.title }} - {{ variant_data.title }}</h3>
+              <p class="shop-the-look-price">{{ variant_data.price | money_without_trailing_zeros }}</p>
+            </div>
           </div>
-          <div class="shop-the-look-card-info">
-          <h3 class="shop-the-look-title">{{ product_data.title }}</h3>
-          <p class="shop-the-look-price">{{ product_data.price | money_without_trailing_zeros }}</p>
-          </div>
-         
-        </div>
-      {% endif %}
-
-    {% endfor %}
-    <button id="add-all-to-cart" class="shop-the-look-add-all">Add All to Cart</button>
-
-  </div>
+        {% endif %}
+      {% endfor %}
+      <button id="add-all-to-cart" class="shop-the-look-add-all">Add All to Cart</button>
+    </div>
+  </a>
 {% endif %}
 
 <style>
