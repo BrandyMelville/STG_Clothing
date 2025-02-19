@@ -28,7 +28,7 @@
       "type": {
         "name": "list.product_reference",
         "category": "REFERENCE"
-      }
+      } 
     },
     {
       "key": "enable_shop_the_look",
