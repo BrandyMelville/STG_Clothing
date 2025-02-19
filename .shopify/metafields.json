@@ -21,9 +21,9 @@
       }
     },
     {
-      "key": "stg_shop_the_look_",
+      "key": "stg_shop_the_look_v",
       "namespace": "custom",
-      "name": "STG Shop The Look ",
+      "name": "STG Shop The Look (variants)",
       "description": "",
       "type": {
         "name": "list.product_reference",
