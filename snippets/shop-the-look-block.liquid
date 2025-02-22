@@ -8,13 +8,29 @@
       {% for variant_data in variant_metafield.value %}
         {% assign product_data = variant_data.product %}
         {% assign variant_id = variant_data.id %}
-        {% assign variant_color = variant_data.option1 | downcase | strip %}  
+        
         {% assign variant_image = nil %}
         {% assign product_images = product_data.images %}
+        {% assign variant_color_words = variant_color | split: " " %}
         {% assign matching_images = "" %}
 
         {% for image in product_images %}
-          {% assign image_alt = image.alt | downcase | strip %}
+          {% assign image_alt = image.alt | downcase %}
+          {% assign match_count = 0 %}
+          
+          {% for word in variant_color_words %}
+            {% if image_alt contains word %}
+              {% assign match_count = match_count | plus: 1 %}
+            {% endif %}
+          {% endfor %}
+
+          {% if match_count == variant_color_words.size %}
+            {% assign matching_images = matching_images | append: image.src | append: "," %}
+          {% endif %}
+        {% endfor %}
+
+        {% for image in product_images %}
+          {% assign image_alt = image.alt | downcase %}
           {% if image_alt contains variant_color %}
             {% assign matching_images = matching_images | append: image.src | append: "," %}
           {% endif %}
@@ -38,7 +54,7 @@
         {% endif %}
     
         {% if variant_image %}
-          
+ 
           <div class="shop-the-look-card" data-variant-id="{{ variant_data.id }}">
             <div class="shop-the-look-card-image">
               
