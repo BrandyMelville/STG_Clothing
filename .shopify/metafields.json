@@ -21,16 +21,6 @@
       }
     },
     {
-      "key": "stg_shop_the_look_",
-      "namespace": "custom",
-      "name": "STG Shop The Look ",
-      "description": "",
-      "type": {
-        "name": "list.product_reference",
-        "category": "REFERENCE"
-      } 
-    },
-    {
       "key": "enable_shop_the_look",
       "namespace": "custom",
       "name": "Enable Shop the look",
@@ -55,6 +45,26 @@
       "namespace": "shopify",
       "name": "Color",
       "description": "Defines the primary color or pattern, such as blue or striped",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "stg_shop_the_look_v",
+      "namespace": "custom",
+      "name": "STG Shop The Look (variants)",
+      "description": "",
+      "type": {
+        "name": "list.variant_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "clothing-features",
+      "namespace": "shopify",
+      "name": "Clothing features",
+      "description": "Describes unique properties of apparel, such as water resistant or wrinkle resistant",
       "type": {
         "name": "list.metaobject_reference",
         "category": "REFERENCE"
