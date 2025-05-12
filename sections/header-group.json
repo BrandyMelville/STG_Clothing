@@ -78,7 +78,7 @@
         "menu_linklist": "main-menu",
         "menu_layout": "inline-menu-left",
         "nav_featured_link": "Sale",
-        "menu_linklist_mobile": "",
+        "menu_linklist_mobile": "mobile-menu",
         "mobile_expand_with_entire_link": false,
         "enable_mobile_promo_carousel": true,
         "enable_nav_mob_products": false,
