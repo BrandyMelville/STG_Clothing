@@ -534,7 +534,8 @@
       ".opt-btn.is-unavailable + .opt-label.opt-label--swatch:before,.opt-btn.is-unavailable + .opt-label.opt-label--image:before {opacity: 1;}",
       ".product-block-options--swatch .product-block-options__item.product-block-options__item--unavailable:before {opacity: 0;}",
       ".opt-label {border: 1px rgb(200 199 199) solid; color: rgb(126 124 124);}",
-      ".opt-btn:checked + .opt-label {border: 2px rgb(81 61 50) solid; color: #513d32; font-weight: bold;}"
+      ".opt-btn:checked + .opt-label {border: 2px rgb(81 61 50) solid; color: #513d32; font-weight: bold;}",
+      ".section-footer__lower-menu__list li {width: 100%;}"
     ]
   }
 }
