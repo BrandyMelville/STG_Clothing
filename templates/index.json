@@ -117,7 +117,7 @@
       "type": "featured-collection",
       "settings": {
         "title": "JUST IN",
-        "collection": "clothing",
+        "collection": "just-in",
         "show_vendor": false,
         "enable_carousel": true,
         "grid": 4,
