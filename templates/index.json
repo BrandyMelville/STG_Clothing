@@ -108,7 +108,7 @@
         "overlay_style": "full image-overlay--bg-shadow",
         "transition": "instant",
         "navigation": "arrows",
-        "autoplay": false,
+        "autoplay": true,
         "autoplay_speed": 7,
         "accessibility_info": ""
       }
