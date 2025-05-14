@@ -75,7 +75,7 @@
         "16359276425da8ce46-0": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Facetune_12-05-2025-10-27-12.jpg",
+            "image": "shopify://shop_images/DSC00359.jpg",
             "slide_link": "",
             "subheading": "",
             "title": "",
@@ -109,7 +109,7 @@
         "transition": "instant",
         "navigation": "arrows",
         "autoplay": true,
-        "autoplay_speed": 7,
+        "autoplay_speed": 5,
         "accessibility_info": ""
       }
     },
