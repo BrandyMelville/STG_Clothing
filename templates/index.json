@@ -32,10 +32,10 @@
             "text_alignment": "center center"
           }
         },
-        "image_VKDUme": {
+        "image_33q8dy": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/DSC09988_c5c8efeb-0ace-467d-af7e-01c9315aac6e.jpg",
+            "image": "shopify://shop_images/DSC00604_8561d1ab-e61e-4806-9d0e-5ae9c58b35c9.jpg",
             "slide_link": "",
             "subheading": "",
             "title": "",
@@ -95,7 +95,7 @@
       },
       "block_order": [
         "image_igAp3x",
-        "image_VKDUme",
+        "image_33q8dy",
         "image_j6nGmJ",
         "16359276425da8ce46-0"
       ],
