@@ -69,7 +69,7 @@
       "type": "header",
       "settings": {
         "logo": "shopify://shop_images/stg_bright_dark_brown.png",
-        "logo_img_width_int": 100,
+        "logo_img_width_int": 65,
         "mobile_logo_img_width_int": 55,
         "logo_h1": true,
         "enable_sticky": true,
