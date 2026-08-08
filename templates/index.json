@@ -168,10 +168,23 @@
         "show_view_all": false,
         "full_width": false
       }
+    },
+    "video_kx6ehA": {
+      "type": "video",
+      "disabled": true,
+      "name": "Video",
+      "settings": {
+        "video_external": "",
+        "video_description": "",
+        "text_alignment": "center center",
+        "full_width": true,
+        "overlay_style": "shadow"
+      }
     }
   },
   "order": [
     "16359276425da8ce46",
+    "video_kx6ehA",
     "16359278676808bea5"
   ]
 }
