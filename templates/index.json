@@ -15,7 +15,7 @@
         "16359276425da8ce46-0": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/DSC05913.jpg",
+            "image": "shopify://shop_images/DSC09578_940c234b-a23e-4cfd-b9e0-5d469bc2f1d7.jpg",
             "slide_link": "",
             "subheading": "",
             "title": "",
@@ -35,7 +35,7 @@
         "image_mXcWLX": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/DSC00919-2.jpg",
+            "image": "shopify://shop_images/DSC09887_eed58e39-8b37-4c64-bd6e-eeebb6a5cc80.jpg",
             "slide_link": "",
             "subheading": "",
             "title": "",
@@ -75,7 +75,7 @@
         "image_igAp3x": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/DSC06061.jpg",
+            "image": "shopify://shop_images/DSC09492.jpg",
             "slide_link": "",
             "subheading": "",
             "title": "",
@@ -95,7 +95,7 @@
         "image_33q8dy": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/DSC04713-Enhanced-NR.jpg",
+            "image": "shopify://shop_images/DSC08248-2.jpg",
             "slide_link": "",
             "subheading": "",
             "title": "",
@@ -115,7 +115,7 @@
         "image_BPTWeH": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/DSC06416_a33d0c4e-33c7-4d55-adce-8f5e0119fe0a.jpg",
+            "image": "shopify://shop_images/DSC08896.jpg",
             "slide_link": "",
             "subheading": "",
             "title": "",
@@ -155,6 +155,18 @@
         "accessibility_info": ""
       }
     },
+    "video_kx6ehA": {
+      "type": "video",
+      "disabled": true,
+      "name": "Video",
+      "settings": {
+        "video_external": "",
+        "video_description": "",
+        "text_alignment": "center center",
+        "full_width": true,
+        "overlay_style": "shadow"
+      }
+    },
     "16359278676808bea5": {
       "type": "featured-collection",
       "settings": {
@@ -167,18 +179,6 @@
         "color_scheme": "default",
         "show_view_all": false,
         "full_width": false
-      }
-    },
-    "video_kx6ehA": {
-      "type": "video",
-      "disabled": true,
-      "name": "Video",
-      "settings": {
-        "video_external": "",
-        "video_description": "",
-        "text_alignment": "center center",
-        "full_width": true,
-        "overlay_style": "shadow"
       }
     }
   },
